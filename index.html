@@ -10,9 +10,18 @@
   header { padding: 60px 40px 40px; border-bottom: 1px solid #222; }
   header h1 { font-size: 2rem; font-weight: normal; letter-spacing: 2px; color: #ffffff; }
   header p { margin-top: 10px; color: #888; font-size: 0.95rem; letter-spacing: 1px; }
-  .project { max-width: 960px; margin: 60px auto; padding: 0 40px; }
+  
+  /* Main layout split for timeline */
+  .portfolio-container { position: relative; max-width: 1200px; margin: 0 auto; display: flex; }
+  .feed { flex: 1; max-width: 960px; padding: 0 40px; }
+  
+  .project { margin: 60px auto; scroll-margin-top: 80px; }
   .project h2 { font-size: 1.4rem; font-weight: normal; color: #7ecfcf; margin-bottom: 8px; }
   .project .meta { font-size: 0.8rem; color: #555; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; }
+  
+  /* Inline date helper hidden on desktop, visible on mobile */
+  .mobile-date { display: none; font-size: 0.8rem; color: #7ecfcf; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; font-family: sans-serif; }
+  
   .project p { line-height: 1.8; color: #bbb; margin-bottom: 30px; font-size: 0.95rem; }
   .images { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
   .images img, .zoomable-img { width: 100%; border-radius: 4px; border: 1px solid #1a1a1a; cursor: pointer; transition: border-color 0.3s, transform 0.2s; }
@@ -23,6 +32,15 @@
   .finding p { color: #ccc; margin: 0; font-size: 0.9rem; font-style: italic; }
   footer { border-top: 1px solid #222; padding: 40px; text-align: center; color: #444; font-size: 0.8rem; }
 
+  /* Desktop Fixed Timeline Sidebar */
+  .timeline-sidebar { position: sticky; top: 120px; height: fit-content; width: 180px; padding-left: 20px; border-left: 1px solid #222; margin-top: 60px; margin-right: 40px; }
+  .timeline-track { display: flex; flex-direction: column; gap: 40px; position: relative; }
+  .timeline-node { font-family: sans-serif; font-size: 0.75rem; color: #444; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: color 0.3s ease, padding-left 0.3s ease; position: relative; }
+  .timeline-node:hover { color: #888; }
+  .timeline-node.active { color: #7ecfcf; font-weight: bold; padding-left: 8px; }
+  /* Indicator dot for active item */
+  .timeline-node.active::before { content: ''; position: absolute; left: -25px; top: 4px; width: 7px; height: 7px; background: #7ecfcf; border-radius: 50%; box-shadow: 0 0 8px #7ecfcf; }
+
   /* Lightbox Styles */
   .lightbox-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -31,16 +49,17 @@
   }
   .lightbox-overlay.active { opacity: 1; pointer-events: auto; }
   .lightbox-container { position: relative; max-width: 90%; max-height: 90%; overflow: hidden; border-radius: 4px; }
-  .lightbox-img {
-    max-width: 100%; max-height: 85vh; object-fit: contain; transition: transform 0.2s ease;
-    cursor: zoom-in; display: block;
-  }
+  .lightbox-img { max-width: 100%; max-height: 85vh; object-fit: contain; transition: transform 0.2s ease; cursor: zoom-in; display: block; }
   .lightbox-img.zoomed { transform: scale(2); cursor: zoom-out; }
-  .lightbox-close {
-    position: absolute; top: 20px; right: 20px; color: #888; font-size: 1.5rem;
-    cursor: pointer; font-family: sans-serif; transition: color 0.2s;
-  }
+  .lightbox-close { position: absolute; top: 20px; right: 20px; color: #888; font-size: 1.5rem; cursor: pointer; font-family: sans-serif; transition: color 0.2s; }
   .lightbox-close:hover { color: #fff; }
+
+  /* Responsive Design Rules */
+  @media (max-width: 1024px) {
+    .timeline-sidebar { display: none; }
+    .feed { max-width: 100%; }
+    .mobile-date { display: block; }
+  }
 </style>
 </head>
 <body>
@@ -50,68 +69,93 @@
   <p>Structural Biology · Molecular Visualization · Bioinformatics</p>
 </header>
 
-<div class="project">
-  <h2>Cinematic Ray-Tracing Visualization of Lactoferrin</h2>
-  <div class="meta">PDB: 1LFG · UCSF ChimeraX · Blender (Cycles) · ACES Workflow · 2026</div>
+<div class="portfolio-container">
+  
+  <!-- Main Project Feed -->
+  <div class="feed">
+    
+    <!-- PROJECT 1: LACTOFERRIN -->
+    <div class="project" id="project-lactoferrin">
+      <div class="mobile-date">June 5th, 2026</div>
+      <h2>Cinematic Ray-Tracing Visualization of Lactoferrin</h2>
+      <div class="meta">PDB: 1LFG · UCSF ChimeraX · Blender (Cycles) · ACES Workflow · 2026</div>
 
-  <p>To explore the intersection of structural biology and advanced 3D production, I exported the atomic coordinates of iron-saturated human lactoferrin (PDB: 1LFG) from UCSF ChimeraX into Blender. Utilizing the Cycles path-tracing engine and the ACES color space for enhanced dynamic range, I applied a photorealistic glass material shader to the protein's secondary structure to simulate physical light refraction and transmission. The scene is illuminated by a calibrated 2-point studio lighting setup to accentuate the complex alpha-helices and beta-sheets, captured via a smooth camera fly-through and an ultra-high-resolution macro zoom shot.</p>
+      <p>To explore the intersection of structural biology and advanced 3D production, I exported the atomic coordinates of iron-saturated human lactoferrin (PDB: 1LFG) from UCSF ChimeraX into Blender. Utilizing the Cycles path-tracing engine and the ACES color space for enhanced dynamic range, I applied a photorealistic glass material shader to the protein's secondary structure to simulate physical light refraction and transmission. The scene is illuminated by a calibrated 2-point studio lighting setup to accentuate the complex alpha-helices and beta-sheets, captured via a smooth camera fly-through and an ultra-high-resolution macro zoom shot.</p>
 
-  <video autoplay loop muted playsinline controls>
-    <source src="Lactoferrin_Animation.mp4" type="video/mp4">
-  </video>
+      <video autoplay loop muted playsinline controls>
+        <source src="Lactoferrin_Animation.mp4" type="video/mp4">
+      </video>
 
-  <img class="full-width zoomable-img" src="Lactoferrin_Cinematic_Zoom.png" alt="Lactoferrin macro close-up glass render" onclick="openLightbox(this.src)">
+      <img class="full-width zoomable-img" src="Lactoferrin_Cinematic_Zoom.png" alt="Lactoferrin macro close-up glass render" onclick="openLightbox(this.src)">
 
-  <div class="finding">
-    <p>Key Technical Note: Transitioning structural coordinates from ChimeraX to a dedicated ray-tracing engine allows for advanced material physics (dielectric glass refraction) and precise studio lighting, bridging the gap between molecular accuracy and cinematic visual communication.</p>
+      <div class="finding">
+        <p>Key Technical Note: Transitioning structural coordinates from ChimeraX to a dedicated ray-tracing engine allows for advanced material physics (dielectric glass refraction) and precise studio lighting, bridging the gap between molecular accuracy and cinematic visual communication.</p>
+      </div>
+    </div>
+
+    <!-- PROJECT 2: ABL1 KINASE -->
+    <div class="project" id="project-abl1">
+      <div class="mobile-date">June 2nd, 2026</div>
+      <h2>Structural Analysis of Imatinib Binding to ABL1 Kinase</h2>
+      <div class="meta">PDB: 2HYY · UCSF ChimeraX · X-Ray Crystallography · 2026</div>
+
+      <p>Using UCSF ChimeraX, I performed a structural analysis of the ABL1 kinase domain in complex with imatinib (Gleevec), the first FDA-approved targeted cancer therapy, sourced from X-ray crystallographic data (PDB: 2HYY). Through molecular visualization and atomic distance measurements, I confirmed a critical hydrogen bond of 3.014Å between the gatekeeper residue Thr315 and the secondary amine of imatinib — the precise interaction abolished by the clinically notorious T315I resistance mutation in chronic myeloid leukemia patients.</p>
+
+      <video autoplay loop muted playsinline controls>
+        <source src="ABL1_imatinib_360.mp4" type="video/mp4">
+      </video>
+
+      <div class="images">
+        <img src="ABL1_imatinib_wide.png" alt="ABL1 tetramer wide shot" onclick="openLightbox(this.src)">
+        <img src="ABL1_imatinib_closeup.png" alt="Imatinib binding pocket closeup" onclick="openLightbox(this.src)">
+      </div>
+      <img class="full-width zoomable-img" src="ABL1_Thr315_distance.png" alt="Thr315 hydrogen bond measurement 3.014 angstroms" onclick="openLightbox(this.src)">
+
+      <div class="finding">
+        <p>Key Finding: Structural measurement confirmed a hydrogen bond of 3.014Å between Thr315 OG1 and imatinib N13 — consistent with published values and confirming the critical interaction lost upon T315I gatekeeper mutation.</p>
+      </div>
+    </div>
+
+    <!-- PROJECT 3: HEMOGLOBIN -->
+    <div class="project" id="project-hemoglobin">
+      <div class="mobile-date">May 29th, 2026</div>
+      <h2>AlphaFold Confidence Analysis of Human Hemoglobin Subunit Beta</h2>
+      <div class="meta">UniProt: P68871 · UCSF ChimeraX · AlphaFold v2 · 2026</div>
+
+      <p>Using UCSF ChimeraX, I performed a pLDDT confidence analysis of human hemoglobin subunit beta (UniProt: P68871) sourced from the AlphaFold Protein Structure Database. Coloring the structure by pLDDT score revealed very high confidence (>90) across the conserved eight-helix globin bundle, with a localized low-confidence region at the N-terminal tail spanning residues Met1–Thr5 (pLDDT &lt;70). This reduced confidence reflects the intrinsic flexibility of the unstructured terminus and its dependence on oligomeric context unavailable to a monomer-based prediction model.</p>
+
+      <video autoplay loop muted playsinline controls>
+        <source src="hemoglobin_beta_360_rotation.mp4" type="video/mp4">
+      </video>
+
+      <div class="images">
+        <img src="full_structure_plddt.png" alt="Hemoglobin beta full structure pLDDT coloring" onclick="openLightbox(this.src)">
+        <img src="nterminus_low_confidence.png" alt="N-terminal low confidence region pLDDT" onclick="openLightbox(this.src)">
+      </div>
+
+      <div class="finding">
+        <p>Key Finding: pLDDT scores exceeded 90 across the globin bundle confirming high structural confidence, while residues Met1–Thr5 fell below 70 — correctly identifying a disordered terminus whose conformation depends on tetramer assembly context absent from the monomer prediction.</p>
+      </div>
+    </div>
+
   </div>
-</div>
 
-<div class="project">
-  <h2>Structural Analysis of Imatinib Binding to ABL1 Kinase</h2>
-  <div class="meta">PDB: 2HYY · UCSF ChimeraX · X-Ray Crystallography · 2026</div>
+  <!-- Desktop Sticky Timeline Navigation -->
+  <aside class="timeline-sidebar">
+    <nav class="timeline-track">
+      <div class="timeline-node" data-target="project-lactoferrin" onclick="scrollToProject('project-lactoferrin')">June 5, 2026</div>
+      <div class="timeline-node" data-target="project-abl1" onclick="scrollToProject('project-abl1')">June 2, 2026</div>
+      <div class="timeline-node" data-target="project-hemoglobin" onclick="scrollToProject('project-hemoglobin')">May 29, 2026</div>
+    </nav>
+  </aside>
 
-  <p>Using UCSF ChimeraX, I performed a structural analysis of the ABL1 kinase domain in complex with imatinib (Gleevec), the first FDA-approved targeted cancer therapy, sourced from X-ray crystallographic data (PDB: 2HYY). Through molecular visualization and atomic distance measurements, I confirmed a critical hydrogen bond of 3.014Å between the gatekeeper residue Thr315 and the secondary amine of imatinib — the precise interaction abolished by the clinically notorious T315I resistance mutation in chronic myeloid leukemia patients.</p>
-
-  <video autoplay loop muted playsinline controls>
-    <source src="ABL1_imatinib_360.mp4" type="video/mp4">
-  </video>
-
-  <div class="images">
-    <img src="ABL1_imatinib_wide.png" alt="ABL1 tetramer wide shot" onclick="openLightbox(this.src)">
-    <img src="ABL1_imatinib_closeup.png" alt="Imatinib binding pocket closeup" onclick="openLightbox(this.src)">
-  </div>
-  <img class="full-width zoomable-img" src="ABL1_Thr315_distance.png" alt="Thr315 hydrogen bond measurement 3.014 angstroms" onclick="openLightbox(this.src)">
-
-  <div class="finding">
-    <p>Key Finding: Structural measurement confirmed a hydrogen bond of 3.014Å between Thr315 OG1 and imatinib N13 — consistent with published values and confirming the critical interaction lost upon T315I gatekeeper mutation.</p>
-  </div>
-</div>
-
-<div class="project">
-  <h2>AlphaFold Confidence Analysis of Human Hemoglobin Subunit Beta</h2>
-  <div class="meta">UniProt: P68871 · UCSF ChimeraX · AlphaFold v2 · 2026</div>
-
-  <p>Using UCSF ChimeraX, I performed a pLDDT confidence analysis of human hemoglobin subunit beta (UniProt: P68871) sourced from the AlphaFold Protein Structure Database. Coloring the structure by pLDDT score revealed very high confidence (>90) across the conserved eight-helix globin bundle, with a localized low-confidence region at the N-terminal tail spanning residues Met1–Thr5 (pLDDT &lt;70). This reduced confidence reflects the intrinsic flexibility of the unstructured terminus and its dependence on oligomeric context unavailable to a monomer-based prediction model.</p>
-
-  <video autoplay loop muted playsinline controls>
-    <source src="hemoglobin_beta_360_rotation.mp4" type="video/mp4">
-  </video>
-
-  <div class="images">
-    <img src="full_structure_plddt.png" alt="Hemoglobin beta full structure pLDDT coloring" onclick="openLightbox(this.src)">
-    <img src="nterminus_low_confidence.png" alt="N-terminal low confidence region pLDDT" onclick="openLightbox(this.src)">
-  </div>
-
-  <div class="finding">
-    <p>Key Finding: pLDDT scores exceeded 90 across the globin bundle confirming high structural confidence, while residues Met1–Thr5 fell below 70 — correctly identifying a disordered terminus whose conformation depends on tetramer assembly context absent from the monomer prediction.</p>
-  </div>
 </div>
  
 <footer>
   Leon Trajkovski · leontrajkovski9@gmail.com · Built with UCSF ChimeraX & Blender
 </footer>
 
+<!-- Lightbox Markup -->
 <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
   <span class="lightbox-close">&times;</span>
   <div class="lightbox-container">
@@ -119,30 +163,29 @@
   </div>
 </div>
 
+<!-- Scripts for Lightbox & Timeline Tracking -->
 <script>
+  // 1. Lightbox Logic
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-target');
 
   function openLightbox(src) {
     lightboxImg.src = src;
     lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Stop page scrolling when open
+    document.body.style.overflow = 'hidden';
   }
 
   function closeLightbox(e) {
-    // Only close if user clicked the background overlay or the close 'X' button
     if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
       lightbox.classList.remove('active');
-      lightboxImg.classList.remove('zoomed'); // Reset zoom status
-      document.body.style.overflow = ''; // Restore scrolling
+      lightboxImg.classList.remove('zoomed');
+      document.body.style.overflow = '';
     }
   }
 
   function toggleZoom(e) {
-    e.stopPropagation(); // Stop overlay from closing when clicking image
+    e.stopPropagation();
     lightboxImg.classList.toggle('zoomed');
-    
-    // Track mouse to pan around while zoomed
     if (lightboxImg.classList.contains('zoomed')) {
       lightbox.onmousemove = (moveEvent) => {
         const x = (moveEvent.clientX / window.innerWidth) * 100;
@@ -153,6 +196,37 @@
       lightbox.onmousemove = null;
     }
   }
+
+  // 2. Dynamic Timeline Tracking Logic
+  const projects = document.querySelectorAll('.project');
+  const timelineNodes = document.querySelectorAll('.timeline-node');
+
+  // Smooth scroll to project when clicking sidebar date
+  function scrollToProject(id) {
+    const element = document.getElementById(id);
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Monitor scrolling to highlight the right date node
+  window.addEventListener('scroll', () => {
+    let currentActiveId = '';
+    
+    projects.forEach(project => {
+      const rect = project.getBoundingClientRect();
+      // Check if project top has crossed into upper half of window view
+      if (rect.top <= window.innerHeight * 0.4) {
+        currentActiveId = project.id;
+      }
+    });
+
+    timelineNodes.forEach(node => {
+      if (node.getAttribute('data-target') === currentActiveId) {
+        node.classList.add('active');
+      } else {
+        node.classList.remove('active');
+      }
+    });
+  });
 </script>
 
 </body>
