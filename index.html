@@ -74,50 +74,54 @@
 
 <div class="portfolio-container">
   
+  <!-- Main Project Feed -->
   <div class="feed">
 
+    <!-- PROJECT 1: HUMAN SECRETIN RECEPTOR GPCR MEMBRANE -->
     <div class="project" id="project-membrane">
       <div class="mobile-date">June 10, 2026</div>
-      <h2>Procedural Geometry Nodes Animation of the Active Active Human Secretin Receptor Gs Complex</h2>
+      <h2>Procedural Membrane Animation of the Human Secretin Receptor</h2>
       <div class="meta">PDB: 6WZG · OPM Database · Blender Geometry Nodes · Cycles · <span class="date-text">June 10, 2026</span></div>
 
-      <p>To capture the dynamic cellular environment of transmembrane signaling, I built a procedural lipid bilayer using Blender Geometry Nodes to embed the active state of the human secretin receptor bound to its Gs protein complex (PDB: 6WZG). Using spatial coordinates from the Orientations of Proteins in Membranes (OPM) database as a strict orientation reference, I aligned the receptor's 7-transmembrane (7TM) core within the bilayer. The geometry node setup instances individual lipid molecules across a procedurally displaced canvas. To simulate lipid core thermodynamics efficiently, the node tree rapidly spins the hydrophobic tails along their local Z-axes to represent high-speed kinetic fluctuations, while applying micro-translations to the receptor complex to ground it in a fluid state. The final frames were path-traced in Cycles to capture accurate subsurface light transport through the cellular lipid boundary layer.</p>
+      <p>For this project, I wanted to show a protein actually sitting inside a cell membrane instead of just floating in empty space. I used the raw coordinates for the human secretin receptor complex (PDB: 6WZG) and referenced the OPM database to figure out exactly how the protein aligns with the lipid bilayer. Instead of using a heavy physics simulation, I built the entire membrane procedurally using Blender Geometry Nodes to scatter the individual lipid molecules over a wavy surface. To make the scene look dynamic, I set up the nodes to rapidly spin the lipid tails on their local Z-axes, creating a fast-moving, fluid look for the hydrophobic core while keeping the main protein anchored. I did the final render in Cycles to get clean lighting and realistic depth through the membrane layer.</p>
 
       <video autoplay loop muted playsinline controls>
         <source src="Membrane_Video.mp4" type="video/mp4">
       </video>
 
-      <img class="full-width zoomable-img" src="Membrane_Far.png" alt="Wide view of the active human secretin receptor GPCR complex embedded within a fluid lipid bilayer mesh" onclick="openLightbox(this.src)">
+      <img class="full-width zoomable-img" src="Membrane_Far.png" alt="Wide view of secretin receptor complex in lipid bilayer" onclick="openLightbox(this.src)">
 
       <div class="finding">
-        <p>Key Technical Note: Driving membrane fluid dynamics procedurally via Geometry Nodes allows for continuous, light-weight animations of lipid environments. Using rapid, random local rotations on the tail vertices accurately isolates high-frequency kinetic energy inside the hydrophobic core without disrupting the overall macro stability of the membrane bilayer.</p>
+        <p>Blender Note: Using Geometry Nodes lets me animate the membrane fluid dynamics without lagging the viewport. Spinning the tail vertices locally simulates kinetic motion in the hydrophobic core while keeping the rest of the layout completely stable.</p>
       </div>
     </div>
     
+    <!-- PROJECT 2: LACTOFERRIN -->
     <div class="project" id="project-lactoferrin">
       <div class="mobile-date">June 5, 2026</div>
-      <h2>Cinematic Ray-Tracing Visualization of Lactoferrin</h2>
-      <div class="meta">PDB: 1LFG · UCSF ChimeraX · Blender (Cycles) · ACES Workflow · <span class="date-text">June 5, 2026</span></div>
+      <h2>Cinematic Glass Render of Lactoferrin</h2>
+      <div class="meta">PDB: 1LFG · UCSF ChimeraX · Blender (Cycles) · <span class="date-text">June 5, 2026</span></div>
 
-      <p>To explore the intersection of structural biology and advanced 3D production, I exported the atomic coordinates of iron-saturated human lactoferrin (PDB: 1LFG) from UCSF ChimeraX into Blender. Utilizing the Cycles path-tracing engine and the ACES color space for enhanced dynamic range, I applied a photorealistic glass material shader to the protein's secondary structure to simulate physical light refraction and transmission. The scene is illuminated by a calibrated 2-point studio lighting setup to accentuate the complex alpha-helices and beta-sheets, captured via a smooth camera fly-through and an ultra-high-resolution macro zoom shot.</p>
+      <p>To try out a more artistic, cinematic rendering style, I imported human lactoferrin (PDB: 1LFG) from UCSF ChimeraX into Blender. Instead of using a basic plastic look, I designed a custom dielectric glass shader for the structure to see how light would refract and transmit through the internal folds. I set up a dark studio environment with two bright rim lights to catch the outer edges of the alpha-helices and beta-sheets, then rendered the animation using the Cycles engine for clean light behavior and path-tracing reflections.</p>
 
       <video autoplay loop muted playsinline controls>
         <source src="Lactoferrin_Animation.mp4" type="video/mp4">
       </video>
 
-      <img class="full-width zoomable-img" src="Lactoferrin_Cinematic_Zoom.png" alt="Lactoferrin macro close-up glass render" onclick="openLightbox(this.src)">
+      <img class="full-width zoomable-img" src="Lactoferrin_Cinematic_Zoom.png" alt="Lactoferrin glass close-up" onclick="openLightbox(this.src)">
 
       <div class="finding">
-        <p>Key Technical Note: Transitioning structural coordinates from ChimeraX to a dedicated ray-tracing engine allows for advanced material physics (dielectric glass refraction) and precise studio lighting, bridging the gap between molecular accuracy and cinematic visual communication.</p>
+        <p>Blender Note: Moving structural data into a ray-tracing engine like Cycles lets me play around with complex glass physics and studio lighting, making the molecular structure look like a modern sculpture.</p>
       </div>
     </div>
 
+    <!-- PROJECT 3: ABL1 KINASE -->
     <div class="project" id="project-abl1">
       <div class="mobile-date">June 2, 2026</div>
-      <h2>Structural Analysis of Imatinib Binding to ABL1 Kinase</h2>
-      <div class="meta">PDB: 2HYY · UCSF ChimeraX · X-Ray Crystallography · <span class="date-text">June 2, 2026</span></div>
+      <h2>Visualizing Imatinib Binding to ABL1 Kinase</h2>
+      <div class="meta">PDB: 2HYY · UCSF ChimeraX · <span class="date-text">June 2, 2026</span></div>
 
-      <p>Using UCSF ChimeraX, I performed a structural analysis of the ABL1 kinase domain in complex with imatinib (Gleevec), the first FDA-approved targeted cancer therapy, sourced from X-ray crystallographic data (PDB: 2HYY). Through molecular visualization and atomic distance measurements, I confirmed a critical hydrogen bond of 3.014Å between the gatekeeper residue Thr315 and the secondary amine of imatinib — the precise interaction abolished by the clinically notorious T315I resistance mutation in chronic myeloid leukemia patients.</p>
+      <p>I wanted to look into how cancer drugs physically fit into their target proteins, so I pulled the crystal structure of the ABL1 kinase domain bound with the drug imatinib (Gleevec) from the PDB database (2HYY). Using UCSF ChimeraX, I isolated the active site to find the specific connection points between the molecule and the protein. I used the measurement tools to find a crucial hydrogen bond of 3.014Å between the drug and the Thr315 residue, which is the exact spot that gets messed up in patients who develop resistance to the treatment.</p>
 
       <video autoplay loop muted playsinline controls>
         <source src="ABL1_imatinib_360.mp4" type="video/mp4">
@@ -127,36 +131,38 @@
         <img src="ABL1_imatinib_wide.png" alt="ABL1 tetramer wide shot" onclick="openLightbox(this.src)">
         <img src="ABL1_imatinib_closeup.png" alt="Imatinib binding pocket closeup" onclick="openLightbox(this.src)">
       </div>
-      <img class="full-width zoomable-img" src="ABL1_Thr315_distance.png" alt="Thr315 hydrogen bond measurement 3.014 angstroms" onclick="openLightbox(this.src)">
+      <img class="full-width zoomable-img" src="ABL1_Thr315_distance.png" alt="Thr315 hydrogen bond measurement" onclick="openLightbox(this.src)">
 
       <div class="finding">
-        <p>Key Finding: Structural measurement confirmed a hydrogen bond of 3.014Å between Thr315 OG1 and imatinib N13 — consistent with published values and confirming the critical interaction lost upon T315I gatekeeper mutation.</p>
+        <p>Key Finding: Measured a 3.014Å hydrogen bond between the Thr315 residue and imatinib using ChimeraX tools, mapping out the precise target location where resistance mutations typically happen.</p>
       </div>
     </div>
 
+    <!-- PROJECT 4: HEMOGLOBIN -->
     <div class="project" id="project-hemoglobin">
       <div class="mobile-date">May 29, 2026</div>
-      <h2>AlphaFold Confidence Analysis of Human Hemoglobin Subunit Beta</h2>
+      <h2>AlphaFold Confidence Mapping on Hemoglobin Beta</h2>
       <div class="meta">UniProt: P68871 · UCSF ChimeraX · AlphaFold v2 · <span class="date-text">May 29, 2026</span></div>
 
-      <p>Using UCSF ChimeraX, I performed a pLDDT confidence analysis of human hemoglobin subunit beta (UniProt: P68871) sourced from the AlphaFold Protein Structure Database. Coloring the structure by pLDDT score revealed very high confidence (>90) across the conserved eight-helix globin bundle, with a localized low-confidence region at the N-terminal tail spanning residues Met1–Thr5 (pLDDT &lt;70). This reduced confidence reflects the intrinsic flexibility of the unstructured terminus and its dependence on oligomeric context unavailable to a monomer-based prediction model.</p>
+      <p>I wanted to see how reliable AlphaFold predictions are across different parts of a structure, so I imported the model for the human hemoglobin beta subunit (UniProt: P68871) into UCSF ChimeraX. I set up the model to color-code itself based on its pLDDT confidence scores. The main body of the protein turned completely blue, showing super high prediction confidence (over 90) across the helices. However, the very tip of the N-terminal tail lit up with low-confidence colors (under 70), showing how the model struggles a bit with floppy, loose ends that usually need other proteins around to snap into place.</p>
 
       <video autoplay loop muted playsinline controls>
         <source src="hemoglobin_beta_360_rotation.mp4" type="video/mp4">
       </video>
 
       <div class="images">
-        <img src="full_structure_plddt.png" alt="Hemoglobin beta full structure pLDDT coloring" onclick="openLightbox(this.src)">
-        <img src="nterminus_low_confidence.png" alt="N-terminal low confidence region pLDDT" onclick="openLightbox(this.src)">
+        <img src="full_structure_plddt.png" alt="Hemoglobin beta pLDDT mapping" onclick="openLightbox(this.src)">
+        <img src="nterminus_low_confidence.png" alt="N-terminal low confidence view" onclick="openLightbox(this.src)">
       </div>
 
       <div class="finding">
-        <p>Key Finding: pLDDT scores exceeded 90 across the globin bundle confirming high structural confidence, while residues Met1–Thr5 fell below 70 — correctly identifying a disordered terminus whose conformation depends on tetramer assembly context absent from the monomer prediction.</p>
+        <p>Key Finding: The core globin bundle scored above 90 for high confidence, while the first five residues at the N-terminus dropped below 70, highlighting the flexible, unstructured regions of the prediction model.</p>
       </div>
     </div>
 
   </div>
 
+  <!-- Desktop Fixed Timeline Navigation -->
   <aside class="timeline-sidebar">
     <nav class="timeline-track">
       <div class="timeline-node" data-target="project-membrane" onclick="scrollToProject('project-membrane')">June 10, 2026</div>
@@ -172,6 +178,7 @@
   Leon Trajkovski · leontrajkovski9@gmail.com · Built with UCSF ChimeraX & Blender
 </footer>
 
+<!-- Lightbox Markup -->
 <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
   <span class="lightbox-close">&times;</span>
   <div class="lightbox-container">
@@ -179,6 +186,7 @@
   </div>
 </div>
 
+<!-- Scripts for Lightbox & Timeline Tracking -->
 <script>
   // 1. Lightbox Logic
   const lightbox = document.getElementById('lightbox');
