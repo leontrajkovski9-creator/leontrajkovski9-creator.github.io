@@ -8,7 +8,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: #0d0d0d; color: #e8e8e8; font-family: 'Georgia', serif; }
   
-  /* UPDATED HEADER STYLES FOR CLEAN SANS-SERIF HIERARCHY */
+  /* HEADER STYLES */
   header { 
     padding: 80px 40px 50px; 
     border-bottom: 1px solid #1a1a1a; 
@@ -45,17 +45,33 @@
   /* Inline date helper hidden on desktop, visible on mobile */
   .mobile-date { display: none; font-size: 0.8rem; color: #7ecfcf; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; font-family: sans-serif; }
   
-  .project p { line-height: 1.8; color: #bbb; margin-bottom: 30px; font-size: 0.95rem; }
+  .project p { line-height: 1.8; color: #bbb; margin-bottom: 24px; font-size: 0.95rem; }
   
-  /* Dense media grid to remove empty space for uneven aspect ratios */
-  .project-media-bridge { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 24px; margin-bottom: 24px; align-items: start; }
-  .project-media-bridge p { margin-bottom: 0; }
+  /* Uniform visual grid to completely eliminate layout gaps */
+  .filled-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 12px; 
+    margin-bottom: 24px; 
+  }
+  .filled-grid img { 
+    width: 100%; 
+    height: 450px; 
+    object-fit: cover; 
+    border-radius: 4px; 
+    border: 1px solid #1a1a1a; 
+    cursor: pointer; 
+    transition: border-color 0.3s, transform 0.2s; 
+  }
+  .filled-grid img:hover { border-color: #7ecfcf; }
 
   .images { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
   .images img, .zoomable-img { width: 100%; border-radius: 4px; border: 1px solid #1a1a1a; cursor: pointer; transition: border-color 0.3s, transform 0.2s; }
   .images img:hover, .zoomable-img:hover { border-color: #7ecfcf; }
-  .full-width { width: 100%; border-radius: 4px; border: 1px solid #1a1a1a; margin-bottom: 12px; display: block; }
+  
+  .full-width { width: 100%; border-radius: 4px; border: 1px solid #1a1a1a; margin-bottom: 24px; display: block; }
   video { width: 100%; border-radius: 4px; margin-bottom: 24px; border: 1px solid #1a1a1a; display: block; }
+  
   .finding { background: #111; border-left: 3px solid #7ecfcf; padding: 16px 20px; border-radius: 0 4px 4px 0; margin-bottom: 24px; }
   .finding p { color: #ccc; margin: 0; font-size: 0.9rem; font-style: italic; }
   footer { border-top: 1px solid #222; padding: 40px; text-align: center; color: #444; font-size: 0.8rem; }
@@ -66,7 +82,6 @@
   .timeline-node { font-family: sans-serif; font-size: 0.75rem; color: #444; letter-spacing: 1px; cursor: pointer; transition: color 0.3s ease, padding-left 0.3s ease; position: relative; }
   .timeline-node:hover { color: #888; }
   .timeline-node.active { color: #7ecfcf; font-weight: bold; padding-left: 8px; }
-  /* Indicator dot for active item */
   .timeline-node.active::before { content: ''; position: absolute; left: -25px; top: 4px; width: 7px; height: 7px; background: #7ecfcf; border-radius: 50%; box-shadow: 0 0 8px #7ecfcf; }
 
   /* Lightbox Styles */
@@ -89,7 +104,8 @@
     .mobile-date { display: block; }
   }
   @media (max-width: 768px) {
-    .project-media-bridge { grid-template-columns: 1fr; gap: 16px; }
+    .filled-grid { grid-template-columns: 1fr; }
+    .filled-grid img { height: 350px; }
   }
 </style>
 </head>
@@ -106,29 +122,28 @@
 
     <!-- F1Fo-ATP SYNTHASE -->
     <div class="project" id="project-atp-synthase">
-      <div class="mobile-date">June 12, 2026</div>
+      <div class="mobile-date">June 16, 2026</div>
       <h2>Conformational Morphing & Procedural Modeling of F1Fo-ATP Synthase</h2>
-      <div class="meta">PDB: 5ARE, 5ARI, 5FIL · Molecular Nodes · Blender Geometry Nodes · Cycles · <span class="date-text">June 12, 2026</span></div>
+      <div class="meta">PDB: 5ARE, 5ARI, 5FIL · Molecular Nodes · Blender Geometry Nodes · Cycles · <span class="date-text">June 16, 2026</span></div>
 
-      <!-- Two column block: Text runs side-by-side with the vertical Far Shot to keep visual density tight -->
-      <div class="project-media-bridge">
-        <p>This project visualizes the structural transitions of mammalian F1Fo-ATP synthase across three distinct functional states (PDB: 5ARE, 5ARI, 5FIL). After generating a continuous coordinate trajectory via conformational morphing, the structural data was integrated into Blender using the Molecular Nodes plugin. To ground the protein in its biological environment, I built a procedural lipid bilayer using Geometry Nodes, texturing the membrane with a dielectric shader utilizing subsurface scattering to mimic the realistic translucency of lipid heads. The entire scene is enclosed in a low-density light blue volumetric box to simulate a crowded intracellular matrix. To produce a seamless portfolio loop, the animation parameters were synchronized so that the coordinate states, the procedural membrane fluctuations, and the volumetric noise fields interpolate perfectly across the loop boundary without any visible cuts.</p>
-        <img class="zoomable-img" src="far_shot.png" alt="Vertical macro composition highlighting volumetric light transmission" onclick="openLightbox(this.src)">
-      </div>
-
-      <!-- Full width cinematic video loop -->
+      <!-- Seamless looping video proudly placed right at the absolute top -->
       <video autoplay loop muted playsinline controls>
         <source src="atp_synthase_rotation.mp4" type="video/mp4">
       </video>
 
-      <!-- Full width widescreen landscape shot -->
-      <img class="full-width zoomable-img" src="pan_shot.png" alt="Widescreen cinematic layout of ATP synthase in mitochondrial membrane" onclick="openLightbox(this.src)">
+      <p>This project visualizes the structural transitions of mammalian F1Fo-ATP synthase across three distinct functional states (PDB: 5ARE, 5ARI, 5FIL). After generating a continuous coordinate trajectory via conformational morphing, the structural data was integrated into Blender using the Molecular Nodes plugin. To ground the protein in its biological environment, I built a procedural lipid bilayer using Geometry Nodes, texturing the membrane with a dielectric shader utilizing subsurface scattering to mimic the realistic translucency of lipid heads. The entire scene is enclosed in a low-density light blue volumetric box to simulate a crowded intracellular matrix. To produce a seamless portfolio loop, the animation parameters were synchronized so that the coordinate states, the procedural membrane fluctuations, and the volumetric noise fields interpolate perfectly across the loop boundary without any visible cuts.</p>
+
+      <!-- Grid layout perfectly matching heights to eliminate trailing empty space blocks -->
+      <div class="filled-grid">
+        <img src="pan_shot.png" alt="Widescreen cinematic layout of ATP synthase in mitochondrial membrane" onclick="openLightbox(this.src)">
+        <img src="far_shot.png" alt="Vertical macro composition highlighting volumetric light transmission" onclick="openLightbox(this.src)">
+      </div>
 
       <div class="finding">
         <p>Blender Note: Ensuring a seamless loop with ambient volumetrics requires mapping the texture noise coordinates over a continuous circular path in 4D space over time. This keeps the environment completely stable when transitioning between the final frame and frame zero.</p>
       </div>
 
-      <!-- Workspace node layout positioned at the very base of the project entry -->
+      <!-- Tech Workspace layout locked structurally at the absolute base of the card -->
       <img class="full-width zoomable-img" src="nodes.png" alt="Geometry Nodes workspace for procedural membrane distribution and loop handling" onclick="openLightbox(this.src)">
     </div>
 
@@ -215,7 +230,7 @@
 
   <aside class="timeline-sidebar">
     <nav class="timeline-track">
-      <div class="timeline-node" data-target="project-atp-synthase" onclick="scrollToProject('project-atp-synthase')">June 12, 2026</div>
+      <div class="timeline-node" data-target="project-atp-synthase" onclick="scrollToProject('project-atp-synthase')">June 16, 2026</div>
       <div class="timeline-node" data-target="project-membrane" onclick="scrollToProject('project-membrane')">June 10, 2026</div>
       <div class="timeline-node" data-target="project-lactoferrin" onclick="scrollToProject('project-lactoferrin')">June 5, 2026</div>
       <div class="timeline-node" data-target="project-abl1" onclick="scrollToProject('project-abl1')">June 2, 2026</div>
@@ -237,7 +252,7 @@
 </div>
 
 <script>
-  // 1. Lightbox Logic
+  // Lightbox Logic
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-target');
 
@@ -269,7 +284,7 @@
     }
   }
 
-  // 2. Dynamic Timeline Tracking Logic
+  // Dynamic Timeline Tracking Logic
   const projects = document.querySelectorAll('.project');
   const timelineNodes = document.querySelectorAll('.timeline-node');
 
