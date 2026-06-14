@@ -120,20 +120,17 @@
   
   <div class="feed">
 
-    <!-- F1Fo-ATP SYNTHASE -->
     <div class="project" id="project-atp-synthase">
-      <div class="mobile-date">June 16, 2026</div>
+      <div class="mobile-date">June 24, 2026</div>
       <h2>Conformational Morphing & Procedural Modeling of F1Fo-ATP Synthase</h2>
-      <div class="meta">PDB: 5ARE, 5ARI, 5FIL · Molecular Nodes · Blender Geometry Nodes · Cycles · <span class="date-text">June 16, 2026</span></div>
+      <div class="meta">PDB: 5ARE, 5ARI, 5FIL · Molecular Nodes · Blender Geometry Nodes · Cycles · <span class="date-text">June 24, 2026</span></div>
 
-      <!-- Seamless looping video proudly placed right at the absolute top -->
       <video autoplay loop muted playsinline controls>
         <source src="atp_synthase_rotation.mp4" type="video/mp4">
       </video>
 
       <p>This project visualizes the structural transitions of mammalian F1Fo-ATP synthase across three distinct functional states (PDB: 5ARE, 5ARI, 5FIL). After generating a continuous coordinate trajectory via conformational morphing, the structural data was integrated into Blender using the Molecular Nodes plugin. To ground the protein in its biological environment, I built a procedural lipid bilayer using Geometry Nodes, texturing the membrane with a dielectric shader utilizing subsurface scattering to mimic the realistic translucency of lipid heads. The entire scene is enclosed in a low-density light blue volumetric box to simulate a crowded intracellular matrix. To produce a seamless portfolio loop, the animation parameters were synchronized so that the coordinate states, the procedural membrane fluctuations, and the volumetric noise fields interpolate perfectly across the loop boundary without any visible cuts.</p>
 
-      <!-- Grid layout perfectly matching heights to eliminate trailing empty space blocks -->
       <div class="filled-grid">
         <img src="pan_shot.png" alt="Widescreen cinematic layout of ATP synthase in mitochondrial membrane" onclick="openLightbox(this.src)">
         <img src="far_shot.png" alt="Vertical macro composition highlighting volumetric light transmission" onclick="openLightbox(this.src)">
@@ -143,8 +140,23 @@
         <p>Blender Note: Ensuring a seamless loop with ambient volumetrics requires mapping the texture noise coordinates over a continuous circular path in 4D space over time. This keeps the environment completely stable when transitioning between the final frame and frame zero.</p>
       </div>
 
-      <!-- Tech Workspace layout locked structurally at the absolute base of the card -->
       <img class="full-width zoomable-img" src="nodes.png" alt="Geometry Nodes workspace for procedural membrane distribution and loop handling" onclick="openLightbox(this.src)">
+    </div>
+
+    <div class="project" id="project-trka">
+      <div class="mobile-date">June 15, 2026</div>
+      <h2>Subsurface Scattering & Molecular Dynamics of the Human TrkA Receptor</h2>
+      <div class="meta">Zenodo Trajectory · Molecular Nodes · Blender Geometry Nodes · Cycles · <span class="date-text">June 15, 2026</span></div>
+
+      <p>For this project, I animated a 500-frame molecular dynamics simulation of the human TrkA receptor protein embedded inside a fluid lipid bilayer membrane. To get a highly organic, translucent look for the lipids without sacrificing performance, I customized the underlying node tree to route the atom coordinates through an optimized mesh-instancing pipeline. The simulation is rendered inside a high-contrast studio scene with heavy edge backlighting and a reflective, high-roughness floor plane to highlight the moving silhouettes of the protein loops and the thermal fluctuations of the surrounding membrane matrix.</p>
+
+      <video autoplay loop muted playsinline controls>
+        <source src="TrkA_Dynamics.mp4" type="video/mp4">
+      </video>
+
+      <div class="finding">
+        <p>Blender Note: Native Cycles point clouds can break down when calculating manual subsurface scattering, turning entirely black. Swapping the point instances out for low-poly Ico Spheres (Subdivisions: 1) paired with a 'Set Shade Smooth' node creates a water-tight 3D mesh volume that allows subsurface light absorption to render properly without running out of memory.</p>
+      </div>
     </div>
 
     <div class="project" id="project-membrane">
@@ -230,7 +242,8 @@
 
   <aside class="timeline-sidebar">
     <nav class="timeline-track">
-      <div class="timeline-node" data-target="project-atp-synthase" onclick="scrollToProject('project-atp-synthase')">June 16, 2026</div>
+      <div class="timeline-node" data-target="project-atp-synthase" onclick="scrollToProject('project-atp-synthase')">June 24, 2026</div>
+      <div class="timeline-node" data-target="project-trka" onclick="scrollToProject('project-trka')">June 15, 2026</div>
       <div class="timeline-node" data-target="project-membrane" onclick="scrollToProject('project-membrane')">June 10, 2026</div>
       <div class="timeline-node" data-target="project-lactoferrin" onclick="scrollToProject('project-lactoferrin')">June 5, 2026</div>
       <div class="timeline-node" data-target="project-abl1" onclick="scrollToProject('project-abl1')">June 2, 2026</div>
